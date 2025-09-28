@@ -31,7 +31,7 @@ async function internetJsonFetch(
     if (headers["Content-Type"] == "application/json") {
       settings.body = JSON.stringify(payload);
     }
-    else if ( headers["Content-Type"] == "multipart/form-data") {
+    else if (headers["Content-Type"] == "multipart/form-data") {
       delete headers["Content-Type"];
       settings.body = payload;
     }
@@ -247,16 +247,31 @@ async function postAcl(
 }
 
 async function importUsers(
-  token,
+  authToken,
   formData) {
 
-  let url = `${config.API_URL}/auth/importusers`;
-  const data = await internetJsonFetch("POST", url, formData, {
-    Authorization: `Bearer ${token}`,
-    'Content-Type': "multipart/form-data"
-  });
+  try {
+    let url = `${config.API_URL}/auth/importusers`;
 
-  return data;
+    const response = await fetch(url, {
+      method: 'POST',
+      headers: {
+        Authorization: authToken,
+      },
+      body: formData,
+    });
+
+    if (!response.ok) {
+      LogError(`URL '${url}': Error uploading file ${response.status}`);
+    }
+
+    const json = await response.json(); // Read JSON response
+    return json;
+
+  } catch (error) {
+      LogError(`User import upload failed ${error}`);
+  }
+
 }
 
 async function getApplications(token) {
