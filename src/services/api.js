@@ -253,7 +253,7 @@ async function importUsers(
   let url = `${config.API_URL}/auth/importusers`;
   const data = await internetJsonFetch("POST", url, formData, {
     Authorization: `Bearer ${token}`,
-    'Content-Type': undefined
+    'Content-Type': "multipart/form-data"
   });
 
   return data;
