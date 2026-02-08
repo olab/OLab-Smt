@@ -6,10 +6,12 @@
   "scripts": {
     "start:local": "vite --port 3000 --host localhost --mode localhost",
     "start:azure": "vite --port 3000 --host localhost --mode azure",
+    "start:azure:dev": "vite --port 3000 --host localhost --mode azure:dev",
     "build:debug": "vite build --mode development",
     "build:release": "vite build --mode production",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "build:azure": "vite build --mode azure",
+    "build:azure:dev": "vite build --mode azure:dev",
     "preview": "vite preview"
   },
   "dependencies": {

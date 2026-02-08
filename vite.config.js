@@ -1,7 +1,6 @@
 import { defineConfig, loadEnv } from 'vite'
 import react from '@vitejs/plugin-react'
 import * as path from 'path';
-import basicSsl from '@vitejs/plugin-basic-ssl'
 
 const ASSET_URL = process.env.ASSET_URL || '';
 
